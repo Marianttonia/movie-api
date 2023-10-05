@@ -8,11 +8,14 @@
 // // console.log(`name`, name)
 // num1.appendChild(name);
 
-function test (tag, expected) {
-    var expected = tag.document.write(tag)
+var display = "";
+
+function test (tag) {
+    display = tag.id;
     console.log("temp", tag);
-    console.log(expected)
+    console.log(display);
 };    
+
 
 function example(number1, number2) {
     console.log(number1 / number2)
