@@ -1,41 +1,31 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="./main.css">
-    <script src="./main.js" ></script>
-    <title> Calculator </title>
-</head>
-<body>
-    <header> 
-        <h3 id="title"> Simple Calculator </h3>
-    </header>
-    <main>
-        <form id="Calculator">
-            <section id="numbers" class="numbers"> 
-                <button id="." onclick="test(this)"> . </button>
-                <button id="0" onclick="test(this)"> 0 </button>
-                <button id="1" onclick="test(this)"> 1 </button>
-                <button id="2" onclick="test(this)"> 2 </button>
-                <button id="3" onclick="test(this)"> 3 </button>
-                <button id="4" onclick="test(this)"> 4 </button>
-                <button id="5" onclick="test(this)"> 5 </button>
-                <button id="6" onclick="test(this)"> 6 </button>
-                <button id="7" onclick="test(this)"> 7 </button>
-                <button id="8" onclick="test(this)"> 8 </button>
-                <button id="9" onclick="test(this)"> 9 </button>
-            </section>
-            <section id="operators" class="operators"> 
-                <button id="x" onclick="test(this)"> x </button>
-                <button id="%" onclick="test(this)"> % </button>
-                <button id="+" onclick="test(this)"> + </button>
-                <button id="-" onclick="test(this)"> - </button>
-            </section>
-            <button type="submit" id="result" onclick="validation()" > Result </button>
-            <button id="asdsa" onclick="example(1,2)"> + </button>
-        </form>
-        
-    </main>
-</body>
-</html>
+<header> 
+    <h3 id="title"> Simple Calculator </h3>
+</header>
+
+<main>
+<div class="insidecal">
+<div id="gridhtml"></div>
+        <section id="numbers" class="numbers"> 
+            <button id="." class="display" onclick="test(this)"> . </button>
+            <button id="0" class="display" onclick="test(this)"> 0 </button>
+            <button id="1" class="display" onclick="test(this)"> 1 </button>
+            <button id="2" class="display" onclick="test(this)"> 2 </button>
+            <button id="3" class="display" onclick="test(this)"> 3 </button>
+            <button id="4" class="display" onclick="test(this)"> 4 </button>
+            <button id="5" class="display" onclick="test(this)"> 5 </button>
+            <button id="6" class="display" onclick="test(this)"> 6 </button>
+            <button id="7" class="display" onclick="test(this)"> 7 </button>
+            <button id="8" class="display" onclick="test(this)"> 8 </button>
+            <button id="9" class="display" onclick="test(this)"> 9 </button>
+        </section>
+        <section id="operators" class="operators"> 
+          <button id="(" class="display" onclick="test(this)"> ( </button>
+          <button id=")" class="display" onclick="test(this)"> ) </button>  
+          <button id="x" class="display" onclick="test(this)"> x </button>
+            <button id="%" class="display" onclick="test(this)"> % </button>
+            <button id="+" class="display" onclick="test(this)"> + </button>
+            <button id="-" class="display" onclick="test(this)"> - </button>
+          <button id="clean" class="display" onclick="test(this)"> MC </button>
+        <button id="result" onclick="validation()" > = </button>
+  </div>
+</main> 

@@ -1,4 +1,79 @@
 * {
-    margin: auto;
+  margin: auto;
 }
 
+#title {
+  color: #fffe;
+  font-family: serif;
+  font-size: 1.5rem;
+  display: flex;
+  justify-content: center;
+}
+
+#gridhtml {
+  display: flex;  
+  justify-content: flex-end;
+  color: #fffe;
+  margin: 0.5rem;
+}
+
+.display {
+  box-shadow: 0 10px 10px -10px #b5b5b5;
+  font-family: serif;
+  color: #1e1e1c;
+  margin: 0.25rem;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  }
+
+#clean {
+  backgroud: #BD524C;
+}
+
+.numbers, .operators {
+  display: flex;
+}
+
+.numbers {
+  display: flex; 
+  max-width: 40rem;
+}
+
+body {
+  margin: 2rem;
+  padding: 1rem;
+  background-color: #0b1d2a;
+  }
+
+main {
+  display: flex;
+  justify-content: center;
+}
+
+#result {
+  box-shadow: 0 10px 10px -10px #b5b5b5;
+  display: flex;
+  font-family: monospace;
+  color: #1e1e1c;
+  border-radius: 0.5rem;
+  padding: 0.5rem;
+}
+
+.insidecal {
+  display: flex;
+  flex-direction: row;
+  jsutify-content: center;
+  background: #1D0E0F1;
+  margin: 2rem;
+  width: 55rem;
+  margin: 2rem;
+  padding: 1rem;
+  width: auto;
+  max-width: 40rem;
+  max-heigt: 60rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border: outset;
+  border-radius: 0.5rem;
+}

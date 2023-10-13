@@ -1,48 +1,37 @@
-// document.body.innerHTML = "<h1>Calculator</h1>";
+var grid = [];
+var operacao = "";
 
-// var operators = document.querySelector(".operators");
-// var num1 = document.getElementById("1");
-// var num2 = document.querySelector(".numbers");
+function test (display){
+  if (display.id === "clean"){
+    grid = grid.slice(0,-1);
+    console.log(grid);
+  } else {
+    grid += display.id;
+  }
+  gridhtml.innerHTML = grid;
+  console.log(grid);
+};
 
-// var name = document.createElement("bold").textContent("oi")
-// // console.log(`name`, name)
-// num1.appendChild(name);
-
-var display = "";
-
-function test (tag) {
-    display = tag.id;
-    console.log("temp", tag);
-    console.log(display);
-};    
-
-
-function example(number1, number2) {
-    console.log(number1 / number2)
-}
-
-
-function calculator () {
-    if (operators == "+") { 
-        operacao = num1 + num2;
+function calculator (display, operators) {
+    if (operators === "+") { 
+        operacao = display + display;
     };
-    if (operators == "-") {
-        operacao = num1 - num2;
+    if (operators === "-") {
+        operacao = display - display;
     };
-    if (operators == "%") {
-        operacao = num1 / num2;
+    if (operators === "%") {
+        operacao = display / display;
     };
-    if (operators == "x") {
-        operacao = num1 * num2; 
+    if (operators === "x") {
+        operacao = display * display; 
     };
     return operacao;
 };
 
-function validation() {
-    var operacao = ""
-    if (operacao == "") {
-        document.write("Digite a operacao desejada");
+function validation(calculator, display) {
+    if (operacao === "") {
+        alert("Digite a operacao desejada");
     } else {
-        document.write("O valor da operacao e: " , calculator(operacao));
+        alert("O valor da operacao e: " , calculator(operators, display));
     };
 };
