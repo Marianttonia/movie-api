@@ -1,37 +1,56 @@
 var grid = [];
 var operacao = "";
+var firstNumber, operator, finalNumber, resultRegex;
 
-function test (display){
-  if (display.id === "clean"){
+function handleCharacter(character){
+  if (character.id === "cleanDigit"){
     grid = grid.slice(0,-1);
-    console.log(grid);
+  } else if (character.id === "cleanAll") {
+    grid = "";
   } else {
-    grid += display.id;
-  }
+    grid += character.id;
+  };
   gridhtml.innerHTML = grid;
-  console.log(grid);
+ 
+  const regex = /(\d+)|(\w)|(%)|(-)|(\+)|(\d+)/g;
+  resultRegex = grid?.match(regex);
+  firstNumber = Number(resultRegex[0]);
+  operator = resultRegex[1];
+  finalNumber = Number(resultRegex[2]);
 };
 
-function calculator (display, operators) {
-    if (operators === "+") { 
-        operacao = display + display;
+function calculator (firstNumber, operator, finalNumber) {
+    if (operator === "+") { 
+        operacao = firstNumber + finalNumber;
     };
-    if (operators === "-") {
-        operacao = display - display;
+    if (operator === "-") {
+        operacao = firstNumber - finalNumber;
     };
-    if (operators === "%") {
-        operacao = display / display;
+    if (operator === "%") {
+        operacao = firstNumber / finalNumber;
     };
-    if (operators === "x") {
-        operacao = display * display; 
+    if (operator === "x") {
+        operacao = firstNumber * finalNumber; 
     };
     return operacao;
 };
 
-function validation(calculator, display) {
-    if (operacao === "") {
+function validation() {
+    if (grid === "") {
         alert("Digite a operacao desejada");
     } else {
-        alert("O valor da operacao e: " , calculator(operators, display));
+      i = 0;
+      while (i < resultRegex.length) {
+        var result = calculator(firstNumber, operator, finalNumber);
+        firstNumber = Number(result);
+        operator = resultRegex[1];
+        finalNumber = Number(resultRegex[2]);
+        console.log(resultRegex,firstNumber,operator,finalNumber);
+        i++;
+        };
+      
+        result = calculator(firstNumber, operator, finalNumber);
+        gridhtml.innerHTML = result;
+        grid = result;
     };
 };

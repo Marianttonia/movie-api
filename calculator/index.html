@@ -1,31 +1,34 @@
+<!-- https://codepen.io/akame-the-scripter/pen/NWeoemX?editors=1111 -->
+
 <header> 
-    <h3 id="title"> Simple Calculator </h3>
+  <h3 id="title"> Simple Calculator </h3>
 </header>
 
 <main>
 <div class="insidecal">
 <div id="gridhtml"></div>
-        <section id="numbers" class="numbers"> 
-            <button id="." class="display" onclick="test(this)"> . </button>
-            <button id="0" class="display" onclick="test(this)"> 0 </button>
-            <button id="1" class="display" onclick="test(this)"> 1 </button>
-            <button id="2" class="display" onclick="test(this)"> 2 </button>
-            <button id="3" class="display" onclick="test(this)"> 3 </button>
-            <button id="4" class="display" onclick="test(this)"> 4 </button>
-            <button id="5" class="display" onclick="test(this)"> 5 </button>
-            <button id="6" class="display" onclick="test(this)"> 6 </button>
-            <button id="7" class="display" onclick="test(this)"> 7 </button>
-            <button id="8" class="display" onclick="test(this)"> 8 </button>
-            <button id="9" class="display" onclick="test(this)"> 9 </button>
-        </section>
-        <section id="operators" class="operators"> 
-          <button id="(" class="display" onclick="test(this)"> ( </button>
-          <button id=")" class="display" onclick="test(this)"> ) </button>  
-          <button id="x" class="display" onclick="test(this)"> x </button>
-            <button id="%" class="display" onclick="test(this)"> % </button>
-            <button id="+" class="display" onclick="test(this)"> + </button>
-            <button id="-" class="display" onclick="test(this)"> - </button>
-          <button id="clean" class="display" onclick="test(this)"> MC </button>
-        <button id="result" onclick="validation()" > = </button>
-  </div>
+      <section id="numbers" class="numbers"> 
+          <button id="." class="display" onclick="handleCharacter(this)"> . </button>
+          <button id="0" class="display" onclick="handleCharacter(this)"> 0 </button>
+          <button id="1" class="display" onclick="handleCharacter(this)"> 1 </button>
+          <button id="2" class="display" onclick="handleCharacter(this)"> 2 </button>
+          <button id="3" class="display" onclick="handleCharacter(this)"> 3 </button>
+          <button id="4" class="display" onclick="handleCharacter(this)"> 4 </button>
+          <button id="5" class="display" onclick="handleCharacter(this)"> 5 </button>
+          <button id="6" class="display" onclick="handleCharacter(this)"> 6 </button>
+          <button id="7" class="display" onclick="handleCharacter(this)"> 7 </button>
+          <button id="8" class="display" onclick="handleCharacter(this)"> 8 </button>
+          <button id="9" class="display" onclick="handleCharacter(this)"> 9 </button>
+      </section>
+      <section id="operators" class="operators"> 
+        <button id="(" class="display" onclick="handleCharacter(this)"> ( </button>
+        <button id=")" class="display" onclick="handleCharacter(this)"> ) </button>  
+        <button id="x" class="display" onclick="handleCharacter(this)"> x </button>
+          <button id="%" class="display" onclick="handleCharacter(this)"> % </button>
+          <button id="+" class="display" onclick="handleCharacter(this)"> + </button>
+          <button id="-" class="display" onclick="handleCharacter(this)"> - </button>
+        <button id="cleanDigit" class="display" onclick="handleCharacter(this)"> C </button>
+        <button id="cleanAll" class="display" onclick="handleCharacter(this)"> MC </button>
+      <button id="result" onclick="validation()" > = </button>
+</div>
 </main> 
