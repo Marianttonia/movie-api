@@ -27,7 +27,7 @@
   }
 
 #clean {
-  backgroud: #BD524C;
+  background: #BD524C;
 }
 
 .numbers, .operators {
@@ -62,8 +62,8 @@ main {
 .insidecal {
   display: flex;
   flex-direction: row;
-  jsutify-content: center;
-  background: #1D0E0F1;
+  justify-content: center;
+  background: #D0E0F1;
   margin: 2rem;
   width: 55rem;
   margin: 2rem;
