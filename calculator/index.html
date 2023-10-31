@@ -5,8 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <link type="text/css" rel="stylesheet" href="./main.css"/>
-  <script type="text/js" src="./main.js" defer ></script>
-
+  <script src="./main.js" defer></script>
   <title> Calculator </title>
 </head>
 <body>
@@ -33,12 +32,12 @@
       <button id="(" class="display" onclick="handleCharacter(this)"> ( </button>
       <button id=")" class="display" onclick="handleCharacter(this)"> ) </button>  
       <button id="x" class="display" onclick="handleCharacter(this)"> x </button>
-      <button id="%" class="display" onclick="handleCharacter(this)"> % </button>
+      <button id="/" class="display" onclick="handleCharacter(this)"> / </button>
       <button id="+" class="display" onclick="handleCharacter(this)"> + </button>
       <button id="-" class="display" onclick="handleCharacter(this)"> - </button>
       <button id="cleanDigit" class="display" onclick="handleCharacter(this)"> C </button>
       <button id="cleanAll" class="display" onclick="handleCharacter(this)"> MC </button>
-      <button id="result" onclick="validation()" > = </button>
+      <button id="result" onclick="responseCalculator()" > = </button>
     </div>
     </main> 
 </body>
