@@ -31,13 +31,17 @@
     <section id="operators" class="operators"> 
       <button id="(" class="display" onclick="handleCharacter(this)"> ( </button>
       <button id=")" class="display" onclick="handleCharacter(this)"> ) </button>  
+      <button id="[" class="display" onclick="handleCharacter(this)"> [ </button>
+      <button id="]" class="display" onclick="handleCharacter(this)"> ] </button>
+      <button id="{" class="display" onclick="handleCharacter(this)"> { </button>
+      <button id="}" class="display" onclick="handleCharacter(this)"> } </button>
       <button id="x" class="display" onclick="handleCharacter(this)"> x </button>
       <button id="/" class="display" onclick="handleCharacter(this)"> / </button>
       <button id="+" class="display" onclick="handleCharacter(this)"> + </button>
       <button id="-" class="display" onclick="handleCharacter(this)"> - </button>
-      <button id="cleanDigit" class="display" onclick="handleCharacter(this)"> C </button>
-      <button id="cleanAll" class="display" onclick="handleCharacter(this)"> MC </button>
-      <button id="result" onclick="responseCalculator()" > = </button>
+      <button id="cleanDigit" class="display" onclick="clean(this)"> C </button>
+      <button id="cleanAll" class="display" onclick="cleanAll(this)"> MC </button>
+      <button id="result" onclick="validation(this)" > = </button>
     </div>
     </main> 
 </body>

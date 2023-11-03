@@ -1,72 +1,96 @@
-var grid = []
-var precedence = ["(","[","{"]
-var operacao = ""
-var firstNumber, operator, finalNumber, resultRegex, openParenteses, closeParenteses, contentParenteses, lengthPatenteses, newRegex
+var grid = ''
+var resultValue = ''
+var firstNumber, operator, finalNumber, resultRegex, manipulationCalcule, operatorIndex, limitIndex
+const regex = /(\d+(\.\d+)?|[\+\-\*\/x(){}\[\]])/g
 
 function handleCharacter(character) {
-  if (character.id === 'cleanDigit'){
-    grid = grid.slice(0, -1)
-  } else if (character.id === 'cleanAll') {
-    grid = ''
-  } else {
-    grid += character.id
-    gridhtml.innerHTML = grid
-    const regex = /(\d+)|(\w)|(%)|(\+)|(-)|[/(\d+\.\d+)/)|(\w)|(%)|(\+)|(-)(\d+)/)/]/g
-    resultRegex = grid.match(regex)
-    if (character.id === 'result') {
-      coreCalculator()
-      grid = result
-      gridhtml.innerHTML = grid
-    }
-  } // need call the validations after precedence
+  grid += character.id
+  gridhtml.innerHTML = grid
+  resultRegex = grid.match(regex)
+}
+function clean() { 
+  grid = grid.slice(0,-1)
+  gridhtml.innerHTML = grid
+}
+function cleanAll() {
+  grid = ''
+  gridhtml.innerHTML = grid
 }
 
-function verificationData() {
+function validation() {
   if (grid == '') {
     alert("Digite a operacao desejada");
+  // } else if (regexPattern.test(resultRegex)){
+  //     console.log("Erro: Sua expressão contém a ocorrência indesejada.") need the validations
+  } else {
+    result()
+    gridhtml.innerHTML = resultValue
   }
+}
+
+
+function result() {
+  manipulationCalcule = resultRegex.slice() 
+  if ((precedenceIndex = resultRegex.findIndex(el => el === '(')) !== -1) {
+      if (limitIndex = resultRegex.findIndex(limit => limit === ')' )) {
+          precedenceOrder(precedenceIndex)
+      } 
+  } console.log(resultRegex)
+  if ((precedenceIndex = resultRegex.findIndex(el => el === '[')) !== -1) {
+      if (limitIndex = resultRegex.findIndex(limit => limit === ']' )) {
+          precedenceOrder(precedenceIndex)
+      } 
+  } 
+  if ((precedenceIndex = resultRegex.findIndex(el => el === '{')) !== -1) {
+      if (limitIndex = resultRegex.findIndex(limit => limit === '}' )) {
+          precedenceOrder(precedenceIndex)
+      } 
+  }
+  coreCalculator()
 }
 
 function coreCalculator() {
-  var operatorIndex;
-
-  while ((operatorIndex = resultRegex.findIndex(el => el === 'x' || el === '/')) !== -1) {
-    var previus = Number(operatorIndex) 
-    var beforePrevius = Number(previus-1)
-    var afterPrevius = Number(previus+1)
-    console.log("positions by map precedence" ,beforePrevius, previus, afterPrevius)
-    calculator(beforePrevius, previus, afterPrevius)
+  if ((operatorIndex = manipulationCalcule.findIndex(el => el === 'x' || el === '/')) !== -1) {
+      calculator(operatorIndex-1, operatorIndex, operatorIndex+1)
   }
-  console.log(result)
 
-  while ((operatorIndex = resultRegex.findIndex(el => el === '+' || el === '-')) !== -1) {
-    var previus = Number(operatorIndex) 
-    var beforePrevius = Number(previus-1)
-    var afterPrevius = Number(previus+1)
-    console.log("positions by map precedence" ,beforePrevius, previus, afterPrevius)
-    calculator(beforePrevius, previus, afterPrevius)
+  if ((operatorIndex = manipulationCalcule.findIndex(el => el === '+' || el === '-')) !== -1) {
+      calculator(operatorIndex-1, operatorIndex, operatorIndex+1)
   }
+  return resultValue
 }
 
 function calculator(beforePrevius, previus, afterPrevius){
-    firstNumber = Number(resultRegex[beforePrevius])
-    operator = resultRegex[previus] 
-    finalNumber = Number(resultRegex[afterPrevius]) //
-    console.log("pars calc" ,firstNumber, operator, finalNumber)
-    if (operator === "/") {
-        result = firstNumber / finalNumber
-    }
-    if (operator === "x") {
-        result = firstNumber * finalNumber;
-    }
-    if (operator === "+") { 
-        result = firstNumber + finalNumber
-    }
-    if (operator === "-") {
-        result = firstNumber - finalNumber
-    }
-    resultRegex.splice(beforePrevius, 3, result) // 
-    console.log(result, resultRegex)
+  firstNumber = Number(manipulationCalcule[beforePrevius])
+  operator = manipulationCalcule[previus] 
+  finalNumber = Number(manipulationCalcule[afterPrevius])
+  console.log("pars calc" ,firstNumber, operator, finalNumber)
+  if (operator === '/') {
+      resultValue = firstNumber / finalNumber
+  }
+  if (operator === 'x') {
+      resultValue = firstNumber * finalNumber
+  }
+  if (operator === '+') { 
+      resultValue = firstNumber + finalNumber
+  }
+  if (operator === '-') {
+      resultValue = firstNumber - finalNumber
+  }
+  if (manipulationCalcule.length > 0) {
+      manipulationCalcule.splice(beforePrevius, 3, resultValue) 
+      console.log(resultValue, manipulationCalcule)
+  } else {
+      return resultValue
+  }
 }
 
-console.log(coreCalculator())
+function precedenceOrder(precedenceIndex) {
+  var initIndex = Number(precedenceIndex+1)
+  manipulationCalcule = manipulationCalcule.slice(initIndex, limitIndex)
+  calculeLength = (Number(manipulationCalcule.length)) +2
+  coreCalculator()
+  resultRegex.splice(precedenceIndex, calculeLength)
+  resultRegex.splice(precedenceIndex, 0, resultValue)
+  manipulationCalcule = resultRegex
+}
