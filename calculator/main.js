@@ -1,6 +1,6 @@
 var grid = ''
 var resultValue = ''
-var firstNumber, operator, finalNumber, resultRegex, manipulationCalcule, operatorIndex, limitIndex
+var firstNumber, operator, finalNumber, resultRegex, manipulationCalcule, operatorIndex, limitIndex, firstfinaly
 const regex = /(\d+(\.\d+)?|[\+\-\*\/x(){}\[\]])/g
 
 function handleCharacter(character) {
@@ -20,19 +20,38 @@ function cleanAll() {
 function validation() {
   if (grid == '') {
     alert("Digite a operacao desejada");
-  // } else if (regexPattern.test(resultRegex)){
-  //     console.log("Erro: Sua expressão contém a ocorrência indesejada.") need the validations
   } else {
-    result()
-    gridhtml.innerHTML = resultValue
+    try {
+      result()
+      gridhtml.innerHTML = resultValue
+    } catch(e) {
+      alert('Digite a expressao corretamente' , e.messsage)
+    }
   }
 }
 
-
+function precedenceOrder(precedenceIndex) {
+  var initIndex = Number(precedenceIndex+1)
+  manipulationCalcule = manipulationCalcule.slice(initIndex, limitIndex)
+  calculeLength = (Number(manipulationCalcule.length)) +2
+  coreCalculator()
+  resultRegex.splice(precedenceIndex, calculeLength)
+  resultRegex.splice(precedenceIndex, 0, resultValue)
+  manipulationCalcule = resultRegex
+}
 function result() {
   manipulationCalcule = resultRegex.slice() 
   if ((precedenceIndex = resultRegex.findIndex(el => el === '(')) !== -1) {
       if (limitIndex = resultRegex.findIndex(limit => limit === ')' )) {
+        if (firstFinal = resultRegex.findIndex(firstFinaly => firstFinaly === ')' )) {
+          var verifyRational = manipulationCalcule.slice(firstFinal-2, firstFinal)
+          verifyRational = verifyRational.join('')
+          console.log(verifyRational)
+          if (Math.sign(verifyRational)=== -1) { 
+            //return res and callback rescurive diret 
+            console.log('verifyrational' ,verifyRational)
+          }
+        }
           precedenceOrder(precedenceIndex)
       } 
   } console.log(resultRegex)
@@ -47,13 +66,15 @@ function result() {
       } 
   }
   coreCalculator()
+  if (isNaN(resultValue)) {
+    throw Error ('Expressao invalida')
+  }
 }
 
 function coreCalculator() {
   if ((operatorIndex = manipulationCalcule.findIndex(el => el === 'x' || el === '/')) !== -1) {
       calculator(operatorIndex-1, operatorIndex, operatorIndex+1)
   }
-
   if ((operatorIndex = manipulationCalcule.findIndex(el => el === '+' || el === '-')) !== -1) {
       calculator(operatorIndex-1, operatorIndex, operatorIndex+1)
   }
@@ -83,14 +104,4 @@ function calculator(beforePrevius, previus, afterPrevius){
   } else {
       return resultValue
   }
-}
-
-function precedenceOrder(precedenceIndex) {
-  var initIndex = Number(precedenceIndex+1)
-  manipulationCalcule = manipulationCalcule.slice(initIndex, limitIndex)
-  calculeLength = (Number(manipulationCalcule.length)) +2
-  coreCalculator()
-  resultRegex.splice(precedenceIndex, calculeLength)
-  resultRegex.splice(precedenceIndex, 0, resultValue)
-  manipulationCalcule = resultRegex
 }
