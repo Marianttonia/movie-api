@@ -3,39 +3,34 @@ var resultValue = ''
 var firstNumber, operator, finalNumber, resultRegex, manipulationCalcule, operatorIndex, limitIndex, firstfinaly
 const regex = /(\d+(\.\d+)?|[\+\-\*\/x(){}\[\]])/g
 
-// resultRegex = ['3', '-', '(', '+', '7', ')', 'x', '(', '-', '5', ')'] 
-// resultRegex = ['8', '-', '(', '6', ')']
+resultRegex = ['{', '[', '(', '2', '+', '(', '-', '2', ')', '-', '(','-', '2', ')', ')', '+', '3', ']', '-', '2', '}', '-', '(', '-', '30', ')'] 
 
-function handleCharacter(character) {
-  grid += character.id
-  gridhtml.innerHTML = grid
-  resultRegex = grid.match(regex)
-}
-function clean() { 
-  grid = grid.slice(0,-1)
-  gridhtml.innerHTML = grid
-}
-function cleanAll() {
-  grid = ''
-  gridhtml.innerHTML = grid
-}
+// function handleCharacter(character) {
+//   grid += character.id
+//   gridhtml.innerHTML = grid
+//   resultRegex = grid.match(regex)
+// }
+// function clean() { 
+//   grid = grid.slice(0,-1)
+//   gridhtml.innerHTML = grid
+// }
+// function cleanAll() {
+//   grid = ''
+//   gridhtml.innerHTML = grid
+// }
 
-// validation()
-
-function validation() {
-  if (grid == '') {
-    alert("Digite a operacao desejada");
-  } else {
-    try {
-      result()
-      gridhtml.innerHTML = resultValue
-      console.log(resultValue, resultRegex, manipulationCalcule)
-    } catch(e) {
-      alert('Digite a expressao corretamente' , e.messsage)
-      alert('Para positivos use (+n) e negativos (-n)')
-    }
-  }
-}
+// function validation() {
+//   if (grid == '') {
+//     alert("Digite a operacao desejada");
+//   } else {
+//     try {
+//       result()
+//       gridhtml.innerHTML = resultValue
+//     } catch(e) {
+//       alert('Digite a expressao corretamente' , e.messsage)
+//     }
+//   }
+// }
 
 
 function result() {
@@ -43,7 +38,7 @@ function result() {
   if ((precedenceIndex = resultRegex.findIndex(el => el === '(')) !== -1) {
     if (limitIndex = resultRegex.findIndex(limit => limit === ')' ))
         integerCheck()
-        precedenceOrder(precedenceIndex) // até q ok
+        precedenceOrder(precedenceIndex)
       }
       if ((precedenceIndex = resultRegex.findIndex(el => el === '[')) !== -1) {
         if (limitIndex = resultRegex.findIndex(limit => limit === ']' )) {
@@ -56,35 +51,27 @@ function result() {
           integerCheck()
           precedenceOrder(precedenceIndex)
         } 
-      } // verify finaly etapa integercheck
-      precedenceOrder(precedenceIndex)
+      }
       if (isNaN(resultValue)) {
         throw Error ('Expressao invalida')
       } // recebe o result value e o tratamento de erro ja foi feito
-} console.log(resultValue)
-
-function precedenceOrder(precedenceIndex) {
-  if (manipulationCalcule.length > 1) {
-    var initIndex = Number(precedenceIndex+1)
-    manipulationCalcule = manipulationCalcule.slice(initIndex, limitIndex)
-    calculeLength = (Number(manipulationCalcule.length)) +2
-    coreCalculator() // call corecalculator, AQUI ESTÁ O ERRO DA ÚLTIMA CHAMADA
-    if (manipulationCalcule.length > 1) {
-      resultRegex.splice(precedenceIndex, calculeLength)
-      resultRegex.splice(precedenceIndex, 0, resultValue)
-      manipulationCalcule = resultRegex
-    }
-  }
-    resultRegex = manipulationCalcule
-    return resultValue
 }
 
+function precedenceOrder(precedenceIndex) {
+  var initIndex = Number(precedenceIndex+1)
+  manipulationCalcule = manipulationCalcule.slice(initIndex, limitIndex)
+  calculeLength = (Number(manipulationCalcule.length)) +2
+  coreCalculator() // call corecalculator
+  resultRegex.splice(precedenceIndex, calculeLength)
+  resultRegex.splice(precedenceIndex, 0, resultValue)
+  manipulationCalcule = resultRegex
+}
     
 function coreCalculator() {
-  if ((operatorIndex = manipulationCalcule.findIndex(el => el === 'x' || el === '/')) !== -1){
+  while ((operatorIndex = manipulationCalcule.findIndex(el => el === 'x' || el === '/')) !== -1){
     calculator(operatorIndex-1, operatorIndex, operatorIndex+1)
   }
-  if ((operatorIndex = manipulationCalcule.findIndex(el => el === '+' || el === '-')) !== -1) {
+  while ((operatorIndex = manipulationCalcule.findIndex(el => el === '+' || el === '-')) !== -1) {
     calculator(operatorIndex-1, operatorIndex, operatorIndex+1)
   }
   return resultValue
@@ -110,9 +97,12 @@ function calculator(beforePrevius, previus, afterPrevius){
   if (manipulationCalcule.length > 0) {
       manipulationCalcule.splice(beforePrevius, 3, resultValue) 
       console.log(resultValue, manipulationCalcule)
+  } else {
+      return resultValue
   }
-  return resultValue
 }
+
+result()
 
 function integerCheck() {
   if (firstClose = resultRegex.findIndex(firstFinaly => firstFinaly === ')')) {
@@ -127,5 +117,4 @@ function integerCheck() {
       }
     } 
   }
-} 
-
+}
