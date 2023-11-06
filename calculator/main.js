@@ -19,6 +19,23 @@ function cleanAll() {
   gridhtml.innerHTML = grid
 }
 
+function validation() {
+  console.log(resultRegex)
+  if (grid == '') {
+    alert("Digite a operacao desejada");
+  } else {
+    try {
+      result()
+      gridhtml.innerHTML = resultValue.toFixed(2)
+      console.log(`O resultado é ${resultValue.toFixed(2)} :) `)
+    } catch(e) {
+      console.log('deu erro rs, digite a operação corretamente')
+      alert('Digite a expressao corretamente, para cada operador, dois operandos. E para cada seletor de prioridade, seu fechamento. ', e.message)
+      alert('Para positivos use (+n) e negativos (-n)')
+    }
+  }
+}
+
 function calculeSquareRoot() {
     try {
       var gridhtml = document.getElementById('gridhtml')
