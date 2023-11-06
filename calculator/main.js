@@ -19,24 +19,62 @@ function cleanAll() {
   gridhtml.innerHTML = grid
 }
 
-
-function validation() {
-  console.log(resultRegex)
-  if (grid == '') {
-    alert("Digite a operacao desejada");
-  } else {
+function calculeSquareRoot() {
     try {
-      result()
-      gridhtml.innerHTML = resultValue.toFixed(2)
-      alert(`O resultado é ${resultValue.toFixed(2)} :) `)
-    } catch(e) {
-      console.log('deu erro rs, digite a operação corretamente')
-      alert('Digite a expressao corretamente, para cada operador, dois operandos. E para cada seletor de prioridade, seu fechamento. ', e.message)
-      alert('Para positivos use (+n) e negativos (-n)')
+      var gridhtml = document.getElementById('gridhtml')
+      var num = parseFloat(gridhtml.innerHTML)
+      var result = Math.sqrt(num);
+      if (isNaN(num)) {
+        throw new Error('O valor inserido não é um número válido.');
+      }
+      gridhtml.innerHTML = result.toFixed(2)
+      if (isNaN(result) || !isFinite(result)) {
+        throw new Error('O resultado não é um valor finito.')
+      } 
+    } catch (e) {
+      alert("Digite apenas o número para o cálculo da raiz. " + e)
     }
+}
+
+function calculeExpoent() {
+  try {
+    var gridhtml = document.getElementById('gridhtml')
+    var num = parseFloat(gridhtml.innerHTML)
+    if (isNaN(num)) {
+      throw new Error('O valor inserido não é um número válido.');
+    }
+    var result = Math.pow(num,2)
+    alert('Para poder calcular valores maiores, está convertido em unidade dos EUA')
+    gridhtml.innerHTML = result.toLocaleString('en-US', { maximumFractionDigits: 5 })
+  } catch (e) {
+    alert("Digite apenas o número para o cálculo do número elevado a 2. " + e)
   }
 }
 
+function calculeFactorial(num) {
+  try {
+    var gridhtml = document.getElementById('gridhtml')
+    var num = parseFloat(gridhtml.innerHTML)
+    if (isNaN(num) || num < 0) {
+      throw new Error('Digite um número válido e não negativo para calcular o fatorial.');
+    }
+    var maxValue = 170 // pra evitar que o resultado exceda o limite em JavaScript (infinity)
+    if (isNaN(num) || num > maxValue ) {
+      throw new Error('Digite um número válido e não negativo para calcular o fatorial.');
+    }
+    var result = factorial(num)
+    gridhtml.innerHTML = result.toFixed(2);
+  } catch (e) {
+    alert("Digite apenas o número para o cálculo do fatorial. " + e)
+  }
+}
+function factorial(num) {
+  var result = 1;
+  for (var i = 1; i <= num; i++) {
+      result *= i;
+  }
+  return result;
+}
 
 function result() {
   manipulationCalcule = resultRegex.slice() 
