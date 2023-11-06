@@ -2,7 +2,7 @@ var grid = ''
 var resultValue = ''
 var firstNumber, operator, finalNumber, resultRegex, manipulationCalcule, operatorIndex, limitIndex, firstfinaly
 const regex = /(\d+(\.\d+)?|[\+\-\*\/x(){}\[\]])/g
-const consecutivos = ['x', '/', '+', '-']
+const consecutive = ['x', '/', '+', '-']
 
 
 function handleCharacter(character) {
@@ -48,7 +48,7 @@ function result() {
     if ((precedenceIndex = resultRegex.findIndex(el => el === '[')) !== -1) {
         if (limitIndex = resultRegex.findIndex(limit => limit === ']' )) {
           integerCheck()
-          precedenceOrder(precedenceIndex) // deve devolver aqui a regex splicetada do conteudo []
+          precedenceOrder(precedenceIndex)
         } 
       } 
     if ((precedenceIndex = resultRegex.findIndex(el => el === '{')) !== -1) {
@@ -75,7 +75,7 @@ function precedenceOrder(precedenceIndex) {
     manipulationCalcule = manipulationCalcule.slice(initIndex, limitIndex)
     calculeLength = (Number(manipulationCalcule.length)) +2
     coreCalculator() 
-    if(manipulationCalcule.length > 1 || resultRegex.length > 3) { // se não tiver mais o que calcular
+    if(manipulationCalcule.length > 1 || resultRegex.length > 3) { 
       resultRegex.splice(precedenceIndex, calculeLength)
       resultRegex.splice(precedenceIndex, 0, resultValue)
       manipulationCalcule = resultRegex
@@ -86,7 +86,7 @@ function precedenceOrder(precedenceIndex) {
     
 
 function coreCalculator() {
-  if (validationOperators(manipulationCalcule, consecutivos) === true && consecutivos.includes(manipulationCalcule[0]) === false) {
+  if (validationOperators(manipulationCalcule, consecutive) === true && consecutive.includes(manipulationCalcule[0]) === false) {
       while ((operatorIndex = manipulationCalcule.findIndex(el => el === 'x' || el === '/')) !== -1){
         calculator(operatorIndex-1, operatorIndex, operatorIndex+1)
       }
@@ -101,10 +101,10 @@ function coreCalculator() {
 }
 
 
-function validationOperators(manipulationCalcule, consecutivos) {
+function validationOperators(manipulationCalcule, consecutive) {
   let contador = 0
   for (let i = 0; i < manipulationCalcule.length; i++) {
-      if (consecutivos.includes(manipulationCalcule[i])) {
+      if (consecutive.includes(manipulationCalcule[i])) {
       contador++
           if (contador >= 2) {
             alert('Você deve digitar um operador por vez')
@@ -120,10 +120,10 @@ function validationOperators(manipulationCalcule, consecutivos) {
 }
 
 
-function calculator(beforePrevius, previus, afterPrevius){
-  firstNumber = Number(manipulationCalcule[beforePrevius])
-  operator = manipulationCalcule[previus] 
-  finalNumber = Number(manipulationCalcule[afterPrevius])
+function calculator(beforePrevious, previous, afterPrevious){
+  firstNumber = Number(manipulationCalcule[beforePrevious])
+  operator = manipulationCalcule[previous] 
+  finalNumber = Number(manipulationCalcule[afterPrevious])
   console.log("pars calc" ,firstNumber, operator, finalNumber)
   if (operator === '/') {
       resultValue = firstNumber / finalNumber
@@ -137,9 +137,8 @@ function calculator(beforePrevius, previus, afterPrevius){
   if (operator === '-') {
       resultValue = firstNumber - finalNumber
   }
-  // possivel erro ao mandar para o precende index, mudando o valor da lista
   if (manipulationCalcule.length > 0) { 
-      manipulationCalcule.splice(beforePrevius, 3, resultValue) 
+      manipulationCalcule.splice(beforePrevious, 3, resultValue) 
       console.log(resultValue, manipulationCalcule)
   }
   return resultValue
@@ -153,7 +152,7 @@ function integerCheck() {
     if (resultRegex[firstOpen] === '(' ) {
       verifyRational = Number(verifyRational.join('')) 
         if (Math.sign(verifyRational) !== NaN) { 
-          resultRegex.splice(firstOpen, 4) // atualiza a resultRegex
+          resultRegex.splice(firstOpen, 4)
           resultRegex.splice(firstOpen, 0, verifyRational)
           result()
       }
