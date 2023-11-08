@@ -1,0 +1,14 @@
+/* global css archive by the project*/
+
+* {
+  margin: 0;
+  border: 0;
+  box-sizing: border-box;
+  font-family:'Times New Roman', Times, serif
+}
+
+body {
+  background-color: black;
+  color: white;
+  padding: 2rem;
+}
