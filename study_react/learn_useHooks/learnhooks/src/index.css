@@ -1,0 +1,14 @@
+* {
+  margin: 0 auto;
+}
+
+div {
+  display: flex;
+  padding: 2rem;
+  align-items: center;
+  justify-content: center;
+}
+
+p {
+  padding: 2rem;
+}
