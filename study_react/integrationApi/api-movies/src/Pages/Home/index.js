@@ -14,7 +14,7 @@ function Home() {
 
         axios.get(apiUrl)           
         .then(response => {
-            console.log(response.genres)
+            console.log(response.data)
             setMovies(response.genres)
         })
         .catch(function(error) {
