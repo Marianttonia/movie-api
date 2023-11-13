@@ -2,6 +2,7 @@
 import image from './smileviolet.jpg';
 import { Container, MovieList, Movie } from './style';
 import { useState, useEffect } from 'react';
+import axios from 'axios'
 import { apikey } from '../../config/key';
 
 function Home() {
@@ -9,27 +10,33 @@ function Home() {
     const [movies, setMovies] = useState([])
 
     useEffect(() => {
-        fetch('https://api.themoviedb.org')
+        const apiUrl = `https://api.themoviedb.org/3/genre/movie/list?api_key=${apikey}&language=en-US&page=1`
+
+        axios.get(apiUrl)           
+        .then(response => {
+            console.log(response.genres)
+            setMovies(response.genres)
+        })
+        .catch(function(error) {
+            console.log(error)
+        })
+
     }, [])
 
     return (
         <Container>
             <h1> Movies </h1>
-            {/* Use map for return. ForEach dont return */}
             <MovieList> 
-                {movies.map((movie) => {
-                    return (
+                {movies?.map((movie) => {                    
                         <Movie key={movie.id}>
                             <a href="https://gogole.com.br">
-                                <img src={image} alt={movie.title} />
+                                <img src={image} alt={movie.name} />
                             </a>
-                            <span> {movie.title} </span>
+                            <span> {movie.name} </span>
                         </Movie>
-                    );
                 })}
             </MovieList>
         </Container>
     );
 }
-
 export default Home;
