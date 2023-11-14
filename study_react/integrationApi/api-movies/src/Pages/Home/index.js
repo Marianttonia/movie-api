@@ -1,42 +1,38 @@
 // wrhite the page
-import image from './smileviolet.jpg';
-import { Container, MovieList, Movie } from './style';
+import { Container} from './style';
 import { useState, useEffect } from 'react';
-import axios from 'axios'
+import MovieList from '../../components/movieList/movieList';
+import axios from 'axios';
 import { apikey } from '../../config/key';
 
 function Home() {
-
-    const [movies, setMovies] = useState([])
+    const [movies, setMovies] = useState([]);
+    const img_path = 'https://image.tmdb.org/t/p/w500'
 
     useEffect(() => {
-        const apiUrl = `https://api.themoviedb.org/3/genre/movie/list?api_key=${apikey}&language=en-US&page=1`
+        populatedMovies();
+    }, []);
 
-        axios.get(apiUrl)           
-        .then(response => {
-            console.log(response.data)
-            setMovies(response.genres)
-        })
-        .catch(function(error) {
-            console.log(error)
-        })
+    function populatedMovies() {
+        const apiUrl = `https://api.themoviedb.org/3/movie/popular?api_key=${apikey}&language=en-US&page=1`;
 
-    }, [])
+        axios
+            .get(apiUrl)
+            .then((response) => {
+                console.log(response.data);
+                setMovies(response.data.results);
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+    }
 
     return (
         <Container>
             <h1> Movies </h1>
-            <MovieList> 
-                {movies?.map((movie) => {                    
-                        <Movie key={movie.id}>
-                            <a href="https://gogole.com.br">
-                                <img src={image} alt={movie.name} />
-                            </a>
-                            <span> {movie.name} </span>
-                        </Movie>
-                })}
-            </MovieList>
+            <MovieList/>
         </Container>
     );
 }
+
 export default Home;

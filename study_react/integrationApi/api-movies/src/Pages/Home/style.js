@@ -11,24 +11,20 @@ export const Container = styled.div `
 `
 
 export const MovieList = styled.ul `
-
     display: grid;
     list-style: none;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     column-gap: 3rem;
     row-gap: 4rem;
-
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    // max-width: 75vw;
 `
 
 export const Movie = styled.li `
-
-display: flex;
-flex-direction: column;
-align-items: center;
-
 img {
     width: 15rem;
-    height: 10rem;
+    height: 20rem;
     margin-bottom: 2rem;
     border-radius: 1rem;
 }
@@ -42,8 +38,7 @@ a {
     transition: all 0.5s;
 }
 
-a:hover {
+a : hover {
     transform: scale(1.1)
 }
-
 `
