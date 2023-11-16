@@ -1,4 +1,4 @@
-// style the page
+/* // style the page
 import styled from 'styled-components'
 
 export const Container = styled.div `
@@ -41,4 +41,4 @@ a {
 a : hover {
     transform: scale(1.1)
 }
-`
+` */

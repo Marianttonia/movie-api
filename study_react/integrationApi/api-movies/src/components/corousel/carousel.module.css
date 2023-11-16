@@ -1,0 +1,34 @@
+.carouselItem {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    padding: 1rem;
+    margin: 0 2rem;
+}
+
+.items {
+    margin: 1rem;
+    text-align: center;
+}
+
+img {
+    width: 15rem;
+    height: 20rem;
+    margin-bottom: 2rem;
+    border-radius: 1rem;
+}
+
+span {
+    font-weight: bold;
+    font-size: 120%;
+}
+
+a {
+    transition: all 0.5s;
+}
+
+a:hover {
+    transform: scale(1.1)
+}
+
+@import "react-alice-carousel/lib/alice-carousel.css";
