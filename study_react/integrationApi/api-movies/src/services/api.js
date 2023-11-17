@@ -1,25 +1,26 @@
 import axios from 'axios';
 import { apikey } from '../config/key';
 
-const base= {
-    baseURL: 'https://api.themoviedb.org/3',
-}
+const baseURL = 'https://api.themoviedb.org/3'
 const key = apikey
 
-const api = {
-
-    getPopularMovies: () => {
-        const urlMoviesPop = `/movie/popular?api_key=${key}&language=en-US&page=1`;
-
-        return axios.get(base.baseURL+urlMoviesPop);
-    },
-
-    getGenresMovies: () => {
-        const urlMoviesGen = `/genre/movie/list?api_key=${key}&language=en-US&page=1`;
-
-        return axios.get(base.baseURL+urlMoviesGen);
-    }
-
+export const getGenres = async () => {
+    const response = await axios.get(`${baseURL}${key}/genre/movie/list`, {
+        params: { language: 'en', api_key: apikey },
+    })
+    return response.data.genres;
 };
 
-export default api;
+export const getMoviesByGenre = async (genreId) => {
+    const response = await axios.get(`${baseURL}${key}/discover/movie`, {
+        params: { language: 'en', api_key: apikey, with_genres: genreId },
+    });
+    return response.data.results;
+};
+
+export const getPopularMovies = async () => {
+    const response = await axios.get(`${baseURL}${key}/movie/popular`, {
+        params: { language: 'en', api_key: apikey, page: 1},
+    });
+    return response.data.results;
+};

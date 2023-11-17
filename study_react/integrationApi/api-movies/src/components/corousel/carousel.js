@@ -15,7 +15,8 @@ const Carousel = ({movies, img_path}) => {
             responsive={responsive}
             infinite={true}
             mouseTracking
-            items={ movies?.map((movie) => {
+        > 
+            {movies?.map((movie) => {
                     const { id, title, poster_path } = movie;
                     return (
                         <div key={id} className={styles.carouselItem}>
@@ -31,7 +32,7 @@ const Carousel = ({movies, img_path}) => {
                         </div>
                     );
                 })}
-        />
+        </AliceCarousel>
     );
 };
 
