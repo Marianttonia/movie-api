@@ -2,6 +2,7 @@ import React from 'react';
 import AliceCarousel from 'react-alice-carousel';
 import 'react-alice-carousel/lib/alice-carousel.css';
 import styles from './carousel.module.css';
+import { Link } from 'react-router-dom';
 
 const Carousel = ({movies, img_path}) => {
     const responsive = {
@@ -21,12 +22,13 @@ const Carousel = ({movies, img_path}) => {
                     return (
                         <div key={id} className={styles.carouselItem}>
                             <div className={styles.items} >
-                                <a href="https://gogole.com.br">
+                                {/* pass id by movie */}
+                                <Link to={`/me/${id}`} >
                                     <img
                                         src={`${img_path}${poster_path}`}
                                         alt={title}
                                     />
-                                </a>
+                                </Link>
                                 <span> {title} </span>
                             </div>
                         </div>

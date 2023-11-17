@@ -17,8 +17,8 @@ const HomePage = () => {
 
   const populatePopularMovies = async () => {
     try {
-      const popularMoviesData = await getPopularMovies();
-      setMovies(popularMoviesData);
+      const movies = await getPopularMovies();
+      setMovies(movies);
     } catch (e) {
       console.log('Erro ao buscar filmes populares: ', e);
     }
@@ -27,10 +27,10 @@ const HomePage = () => {
   const populateGenres = async () => {
     try {
       const genreList = await getGenres();
-      setGenres(genreList.genres);
+      setGenres(genreList);
 
       const genreMoviesMap = {};
-      for (const genre of genreList.genres) {
+      for (const genre of genreList) {
         const movies = await getMoviesByGenre(genre.id);
         genreMoviesMap[genre.id] = movies;
       }
@@ -44,17 +44,16 @@ const HomePage = () => {
     <div className='home'>
       <Header />
         <div>
-          <h1> Filmes Populares </h1>
+          <h2> Popular Movies </h2>
           <Carousel movies={movies} img_path={img_path} genre="Popular Movies" />
         </div>
         <div>
-          <h1> Filmes por Gênero </h1>
-            {/* Renderiza carrossel para cada gênero */}
+          {/* Renderiza carrossel para cada gênero */}
           {genres.map(genre => (
-          <div key={genre.id}>
-            <h2>{genre.name}</h2>
-            <Carousel movies={genreMovies[genre.id]} />
-          </div>
+            <div key={genre.id}>
+              <h2>{genre.name}</h2>
+              <Carousel movies={genreMovies[genre.id]} img_path={img_path}/>
+            </div>
           ))}
         </div>
       <Footer />

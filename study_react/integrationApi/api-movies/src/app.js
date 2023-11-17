@@ -12,7 +12,7 @@ function App() {
             <BrowserRouter>
             <Routes> 
                 <Route path='/' element= {<HomePage/>} />
-                <Route path='me/:id' element = {<MoviePage/>} />
+                <Route path='me/:id' element= {<MoviePage/>} />
             </Routes>
             </BrowserRouter>
         </React.StrictMode>
