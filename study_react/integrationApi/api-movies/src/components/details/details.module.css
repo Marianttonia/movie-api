@@ -1,0 +1,52 @@
+.container {   
+    /* dps passar no css desse comp just center */
+    margin: 0 auto;
+    padding: 1rem;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.img {
+    width: 18rem;
+    height: 24rem;
+    margin: 0 1rem;
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.movieDetails {
+    padding: 1rem;
+    flex: 1rem;
+}
+
+.info, .genres {
+    display: flex;
+    justify-content: space-around;
+    margin: 1rem;
+}
+
+.overview {
+    padding: 3rem;
+    text-align: center;
+}
+
+/* Media query for smaller screens */
+@media screen and (max-width: 768px) {
+    .img {
+        width: 100%; /* Make the image take up the full width */
+        height: auto; /* Maintain aspect ratio */
+        margin: 0; /* Remove margin */
+    }
+
+    .movieDetails {
+        padding: 1rem;
+        order: -1; /* Move this section to the top on smaller screens */
+    }
+
+    .info, .genres {
+        flex-direction: column; /* Stack items vertically on smaller screens */
+    }
+}
